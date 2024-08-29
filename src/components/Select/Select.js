@@ -19,17 +19,28 @@ const Select = ({ label, value, onChange, children }) => {
   );
 };
 
-const Wrapper = styled.button`
+const SelectWrapper = styled.select`
+  position: absolute;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background-color: ${COLORS.transparentGray15};
+  cursor: pointer;
+`
+
+const Wrapper = styled.div`
   position: relative;
-  width: fit-content;
+  width: max-content;
   padding: 8px 4px 8px 16px;
   border-radius: 8px;
   background-color: ${COLORS.transparentGray15};
   color: ${COLORS.gray700};
   border: none;
-  cursor: pointer;
-  &:focus {
+  &:focus-within { // Not the way it's done in the solution.
     outline: 2px solid ${COLORS.primary};
+    outline: 5px auto Highlight;
   }
   &:hover {
     color: ${COLORS.black};
@@ -42,16 +53,7 @@ const ValueWrapper = styled.div`
   margin-right: 24px;
 `
 
-const SelectWrapper = styled.select`
-  position: absolute;
-  opacity: 0;
-  height: 100%;
-  width: 100%;
-  top: 0;
-  left: 0;
-  background-color: ${COLORS.transparentGray15};
-  cursor: pointer;
-`
+
 
 const CustomIcon = styled(Icon)`
   display: inline-block;
