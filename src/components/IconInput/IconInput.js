@@ -26,7 +26,7 @@ const IconInput = ({
   icon,
   width = 250,
   size,
-  placeholder,
+  ...delegated // This includes the placeholder attribute.
 }) => {
   const styles = STYLES[size];
   return (
@@ -39,10 +39,10 @@ const IconInput = ({
         style={{
           '--width': width + 'px',
           '--height': styles.height + 'px',
-          '--font-size': styles.fontSize / 16 + 'rem',
+          '--font-size': styles.fontSize / 16 + 'rem', // Default font size is 16px, so we convert to rem for accessibility when user changes font size.
           '--border-thickness': styles.borderThickness + 'px',
         }}
-        placeholder={placeholder}
+        {...delegated}
       />
     </Wrapper>
   )
@@ -70,7 +70,7 @@ const IconWrapper = styled.div`
 `;
 
 const StyledInput = styled.input`
-  padding-left: 30px;
+  padding-left: var(--height);
   border: none;
   border-bottom: var(--border-thickness) solid ${COLORS.gray700};
   height: var(--height);
@@ -78,13 +78,15 @@ const StyledInput = styled.input`
   outline-color: Highlight;
   outline-offset: 2px;
   font-size: var(--font-size);
+  font-weight: 700;
+  color: ${COLORS.gray700};
   &::placeholder {
     font-weight: 400;
     color: ${COLORS.gray500};
   }
   &:hover {
     &::placeholder {
-      color: black;
+      color: ${COLORS.black};
     }
     border-bottom-color: ${COLORS.black};
   }
